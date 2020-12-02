@@ -13,3 +13,5 @@ Taxa de aprendizado: 0.1, 0.01,  0.001
 Número de interações: 50, 100, 1000
 
 Vocês deverão plotar gráficos do formato custo por 10 interações. Usem a biblioteca de plotagem que preferirem. Por fim, montem um pequeno relatório (2 páginas max) com os resultados e suas impressões sobre o experimento.
+
+Relatório: https://docs.google.com/document/d/1EeV0b-BUiigRcaQNjd_v4bloGQRu3-UOZ_MYAALXxX8/edit?usp=sharing
