@@ -16,7 +16,7 @@ public class RegressaoLogistica {
         diretorioTeste = "C:\\Users\\Homirrimo\\Documents\\Engenharia de Computação\\TSI\\Jogo da velha\\GitHub\\mini-projeto-regressao-logistica\\dado\\teste.txt";
         diretorioTreino = "C:\\Users\\Homirrimo\\Documents\\Engenharia de Computação\\TSI\\Jogo da velha\\GitHub\\mini-projeto-regressao-logistica\\dado\\treino.txt";
 
-        LineNumberReader lineCounter = new LineNumberReader(new InputStreamReader(new FileInputStream(diretorioTreino)));
+        LineNumberReader lineCounterTreino = new LineNumberReader(new InputStreamReader(new FileInputStream(diretorioTreino)));
 
         double X_treino[][] = new double[671][9];
         double Y_treino[] = new double[671];
@@ -27,7 +27,7 @@ public class RegressaoLogistica {
         String nextLine;
         do{
             //System.out.println(nextLine);
-            nextLine = lineCounter.readLine();
+            nextLine = lineCounterTreino.readLine();
             if (nextLine != null){
                 String[] split = nextLine.split(",");
 
@@ -189,7 +189,7 @@ public class RegressaoLogistica {
         for (int c = 0; c < Y_treino.length; c++)     {
             System.out.print(Y_treino[c] + " "); //imprime caracter a caracter
         }
-
+        lineCounterTreino.close();
         //*****************TESTE***********************
 
         LineNumberReader lineCounterTeste = new LineNumberReader(new InputStreamReader(new FileInputStream(diretorioTeste)));
@@ -366,7 +366,7 @@ public class RegressaoLogistica {
             System.out.print(Y_treino[c] + " "); //imprime caracter a caracter
         }
         System.out.println(" "); //muda de linha
-
+        lineCounterTeste.close();
 /*
         //teste de sanidade, para checar o funcionamento
         double[][] X_treino = {{4.5, 5.5, 3.0, 2.1, 2.2, 0.1},
