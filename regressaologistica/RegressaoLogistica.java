@@ -41,7 +41,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -55,7 +55,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -69,7 +69,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -83,7 +83,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -97,7 +97,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -111,7 +111,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -125,7 +125,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -139,7 +139,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -153,7 +153,7 @@ public class RegressaoLogistica {
                         X_treino[linha][coluna] = 0;
                         break;
                     case "b":
-                        X_treino[linha][coluna] = 2;
+                        X_treino[linha][coluna] = -1;
                         break;
                     default:
                         System.out.println("Número inválido");
@@ -176,7 +176,7 @@ public class RegressaoLogistica {
 
         }while (nextLine != null);
 
-        System.out.println("Matriz \n");
+        System.out.println("\n Matriz \n");
         for (int l = 0; l < X_treino.length; l++)  {
             for (int c = 0; c < X_treino[0].length; c++)     {
                 System.out.print(X_treino[l][c] + " "); //imprime caracter a caracter
@@ -190,6 +190,182 @@ public class RegressaoLogistica {
             System.out.print(Y_treino[c] + " "); //imprime caracter a caracter
         }
 
+        //*****************TESTE***********************
+
+        LineNumberReader lineCounterTeste = new LineNumberReader(new InputStreamReader(new FileInputStream(diretorioTeste)));
+
+        double X_teste[][] = new double[287][9];
+        double Y_teste[] = new double[287];
+
+        linha = 0;
+        coluna = 0;
+
+        //pega a primeira linha da matriz
+        do{
+            //System.out.println(nextLine);
+            nextLine = lineCounterTeste.readLine();
+            if (nextLine != null){
+                String[] split = nextLine.split(",");
+
+                //System.out.println("split "+split[0] + " "+split[1] + " "+split[2] + " "+split[3] + " "+split[4] + " "+ split[5] + " "+split[6] + " "+split[7] + " "+split[8] + " "+split[9]);
+
+                switch (split[0]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[1]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[2]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[3]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[4]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[5]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[6]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[7]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[8]){
+                    case "x":
+                        X_teste[linha][coluna] = 1;
+                        break;
+                    case "o":
+                        X_teste[linha][coluna] = 0;
+                        break;
+                    case "b":
+                        X_teste[linha][coluna] = -1;
+                        break;
+                    default:
+                        System.out.println("Número inválido");
+                }
+                coluna++;
+                switch (split[9]){
+                    case "positive":
+                        Y_teste[linha] = 1;
+                        break;
+                    case "negative":
+                        Y_teste[linha] = 0;
+                        break;
+                    default:
+                        System.out.println("Número inválido para Y_teste");
+                }
+
+            }
+            linha++;
+            coluna=0;
+
+        }while (nextLine != null);
+
+        System.out.println("Matriz teste\n");
+        for (int l = 0; l < X_treino.length; l++)  {
+            for (int c = 0; c < X_treino[0].length; c++)     {
+                System.out.print(X_treino[l][c] + " "); //imprime caracter a caracter
+            }
+            System.out.println(" "); //muda de linha
+        }
+        System.out.println(" "); //muda de linha
+        System.out.println("vetor teste\n");
+
+        for (int c = 0; c < Y_treino.length; c++)     {
+            System.out.print(Y_treino[c] + " "); //imprime caracter a caracter
+        }
+        System.out.println(" "); //muda de linha
 
 /*
         //teste de sanidade, para checar o funcionamento
@@ -203,10 +379,13 @@ public class RegressaoLogistica {
         {5, 4, 3, 2, 1, 0.12},
         {4.8, 5.8, 3.3, 2.4, 2.5, 1.0}};
 
-        double[] Y_treino = {1, 1, 0, 0, 1, 1, 0, 0, 0};
+        double[] Y_treino = {1, 1, 0, 0, 1, 1, 0, 0, 0};*/
 
-        Modelo m = new Modelo(X_treino, Y_treino, X_treino, Y_treino);
-        m.constroi_modelo(0.005, 1000, true);*/
+
+                            //double[][] X_treino, double[] Y_treino, double[][] X_teste, double[] Y_teste
+        //Modelo m = new Modelo(X_treino, Y_treino, X_treino, Y_treino);
+        Modelo m = new Modelo(X_treino, Y_treino, X_teste, Y_teste);
+        m.constroi_modelo(0.005, 1000, true);
     }
 
 }
