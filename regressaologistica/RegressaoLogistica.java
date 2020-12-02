@@ -1,6 +1,8 @@
 package regressaologistica;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -12,10 +14,29 @@ public class RegressaoLogistica {
 
         System.out.println("Iniciando...");
 
-        String diretorioTeste, diretorioTreino;
-        diretorioTeste = "C:\\Users\\Homirrimo\\Documents\\Engenharia de Computação\\TSI\\Jogo da velha\\GitHub\\mini-projeto-regressao-logistica\\dado\\teste.txt";
-        diretorioTreino = "C:\\Users\\Homirrimo\\Documents\\Engenharia de Computação\\TSI\\Jogo da velha\\GitHub\\mini-projeto-regressao-logistica\\dado\\treino.txt";
+        String diretorioTeste, diretorioTreino, diretorioDados;
 
+        diretorioTeste = "dado/teste.txt";
+        diretorioTreino = "dado/treino.txt";
+        diretorioDados = "dado/tic-tac-toe.data";
+
+        //pega a primeira linha da matriz
+        String nextLine;
+
+        //*****************DADOS***********************
+        ArrayList<String> dados = new ArrayList<>(); // Instância para armazenar temporáriamente os dados
+
+        LineNumberReader lineCounterDados = new LineNumberReader(new InputStreamReader(new FileInputStream(diretorioDados)));
+        nextLine = lineCounterDados.readLine();
+        do{
+            dados.add(nextLine);
+            nextLine = lineCounterDados.readLine(); 
+        }while(nextLine != null);
+        lineCounterDados.close();
+
+        gravarDados(dados, diretorioTeste, diretorioTreino);
+        
+        //*****************TREINO***********************
         LineNumberReader lineCounterTreino = new LineNumberReader(new InputStreamReader(new FileInputStream(diretorioTreino)));
 
         double X_treino[][] = new double[671][9];
@@ -23,8 +44,7 @@ public class RegressaoLogistica {
 
         int linha = 0, coluna = 0;
 
-        //pega a primeira linha da matriz
-        String nextLine;
+        
         do{
             //System.out.println(nextLine);
             nextLine = lineCounterTreino.readLine();
@@ -384,8 +404,41 @@ public class RegressaoLogistica {
 
                             //double[][] X_treino, double[] Y_treino, double[][] X_teste, double[] Y_teste
         //Modelo m = new Modelo(X_treino, Y_treino, X_treino, Y_treino);
+        
         Modelo m = new Modelo(X_treino, Y_treino, X_teste, Y_teste);
         m.constroi_modelo(0.005, 1000, true);
+
+    }
+    public static void gravarDados(ArrayList<String> dados, String localTeste, String localTreino) throws IOException {
+        int qtdDados = dados.size(); // tamanho dos dados
+        int qtdTeste = (qtdDados*3)/10; // definindo tamanho do bloco de Teste (30%)
+        Random r = new Random();
+        ArrayList<String> teste = new ArrayList<>();
+        ArrayList<String> treino = new ArrayList<>();
+        
+        int d = r.nextInt(3);
+        int k = 2*d+1;
+        for(int i=0; i<qtdDados; i++){
+            if(k>0){
+                if(d>0 && qtdTeste>0){
+                    teste.add(dados.get(i));
+                    d--;
+                    k--;
+                    qtdTeste--;
+                } 
+                else{
+                    treino.add(dados.get(i));
+                    k--;
+                }     
+            }
+            else{
+                treino.add(dados.get(i));
+                d=r.nextInt(3)+1;
+                k=2*d+1;
+            }   
+        }
+        Arquivo.escritor(teste, localTeste);
+        Arquivo.escritor(treino, localTreino);
     }
 
 }
