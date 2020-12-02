@@ -2,6 +2,7 @@ package regressaologistica;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -413,6 +414,7 @@ public class RegressaoLogistica {
         int qtdDados = dados.size(); // tamanho dos dados
         int qtdTeste = (qtdDados*3)/10; // definindo tamanho do bloco de Teste (30%)
         Random r = new Random();
+        Collections.shuffle(dados);
         ArrayList<String> teste = new ArrayList<>();
         ArrayList<String> treino = new ArrayList<>();
         
@@ -440,5 +442,4 @@ public class RegressaoLogistica {
         Arquivo.escritor(teste, localTeste);
         Arquivo.escritor(treino, localTreino);
     }
-
 }
