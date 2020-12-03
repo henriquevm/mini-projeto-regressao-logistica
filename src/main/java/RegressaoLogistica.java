@@ -9,6 +9,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -425,9 +426,10 @@ public class RegressaoLogistica {
         int qtdDados = dados.size(); // tamanho dos dados
         int qtdTeste = (qtdDados*3)/10; // definindo tamanho do bloco de Teste (30%)
         Random r = new Random();
-        ArrayList<String> teste = new ArrayList();
-        ArrayList<String> treino = new ArrayList();
-        
+        Collections.shuffle(dados);
+        ArrayList<String> teste = new ArrayList<>();
+        ArrayList<String> treino = new ArrayList<>();
+
         int d = r.nextInt(3);
         int k = 2*d+1;
         for(int i=0; i<qtdDados; i++){
@@ -437,17 +439,17 @@ public class RegressaoLogistica {
                     d--;
                     k--;
                     qtdTeste--;
-                } 
+                }
                 else{
                     treino.add(dados.get(i));
                     k--;
-                }     
+                }
             }
             else{
                 treino.add(dados.get(i));
                 d=r.nextInt(3)+1;
                 k=2*d+1;
-            }   
+            }
         }
         Arquivo.escritor(teste, localTeste);
         Arquivo.escritor(treino, localTreino);
