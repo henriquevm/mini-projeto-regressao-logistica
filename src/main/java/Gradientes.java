@@ -1,5 +1,3 @@
-package regressaologistica;
-
 import java.util.Arrays;
 
 /**

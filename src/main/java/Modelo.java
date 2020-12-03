@@ -1,5 +1,12 @@
-package regressaologistica;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,6 +26,10 @@ public class Modelo {
     private final double[] Y_treino;   //vetor com rotulos das instancias, de dimensao m_treino
     private final double[][] X_teste;  //matriz de teste, de dimensao (m_teste, n_x)
     private final double[] Y_teste;    //vetor com rotulos das instancias, de dimensao m_teste
+
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+
 
     public Modelo(double[][] X_treino, double[] Y_treino, double[][] X_teste, double[] Y_teste) {
         this.X_treino = X_treino;
@@ -135,8 +146,13 @@ public class Modelo {
             }
 
             //exibe o custo a cada 100 epocas, se print_custo == true
-            if ((print_custo) && ((i % 10) == 0)) {
-                System.out.println("Custo depois de interacao " + i + ": " + custo);
+            if ((print_custo) && ((i % 50) == 0)) {
+                //System.out.println("Custo depois de interacao " + i + ": " + custo);
+                //grafico
+
+                String nome = Integer.toString(i);
+
+                dataset.addValue(custo, "Taxa", nome);
             }
         }
 
@@ -187,7 +203,8 @@ public class Modelo {
 
         //apenas para verificacao, comentar depois
         for (int i = 0; i < Y_predicao_treino.length; i++) {
-            System.out.println(Y_predicao_treino[i]);
+
+            // System.out.println(Y_predicao_treino[i]);
         }
 
         //prediz rotulos de teste
@@ -198,6 +215,42 @@ public class Modelo {
         //Erro medio absoluto (MAE) ~~> MAE = 1/m * soma(|y_predito^(i) - y^(i)|)
         System.out.println("Acuracia de treino " + (100 - calculaMAE(Y_predicao_treino, Y_treino) * 100) + "%");
         System.out.println("Acuracia de teste " + (100 - calculaMAE(Y_predicao_teste, Y_teste) * 100) + "%");
+
+        //Grafico
+
+        JFreeChart chart = ChartFactory.createLineChart(
+                "Custo X Interações",
+                "Interações",
+                "Custo",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setPaint(Color.black);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setForegroundAlpha(1f);
+        p.setRangeGridlinePaint(Color.black);
+        p.setDomainGridlinesVisible(true);
+        p.setDomainGridlinePaint(Color.black);
+        CategoryItemRenderer renderer = p.getRenderer();
+        renderer.setSeriesPaint(0, Color.blue);
+
+        //renderer.setBaseStroke(new BasicStroke(2.0f));
+
+        renderer.setSeriesStroke(0, new BasicStroke(3f));
+
+        //renderer.setAutoPopulateSeriesStroke(false);
+
+        //renderer.setSeriesShape(0, 0.3f);
+        //renderer.setSeriesPaint(1, Color.green);
+        ChartFrame frame1 = new ChartFrame("Custo X Interações", chart);
+        frame1.setVisible(true);
+        frame1.setSize(1000,500);
+
     }
 
     /**
